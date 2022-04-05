@@ -13,8 +13,6 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const app = express();
 
-
-
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
@@ -45,8 +43,6 @@ const userSchema = new mongoose.Schema({
 });
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
-
-// userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ["password"]});
 
 const User = new mongoose.model("User", userSchema);
 
