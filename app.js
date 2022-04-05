@@ -134,6 +134,7 @@ app.get('/register', function(req, res) {
 });
 
 app.get('/secrets', function(req, res) {
+  console.log(req.isAuthenticated());
   User.find({
     "secret": {
       $ne: null
@@ -171,11 +172,15 @@ app.post('/register', function(req, res) {
       res.redirect('/register');
     } else {
       passport.authenticate('local')(req, res, function() {
+        console.log('Access Granted!!');
         res.redirect('/secrets');
       });
     }
   });
 
+});
+app.post('/', function(req, res) {
+  res.send("connected");
 });
 app.post('/login', function(req, res) {
   const user = new User({
@@ -213,7 +218,7 @@ app.post('/submit', function(req, res) {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = 8000;
 }
 
 app.listen(port, function() {
