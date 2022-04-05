@@ -1,4 +1,3 @@
-//jshint esversion:6
 
 require('dotenv').config();
 const express = require('express');
@@ -209,8 +208,6 @@ app.post('/submit', function(req, res) {
     }
   });
 });
-
-
 
 let port = process.env.PORT;
 if (port == null || port == "") {
